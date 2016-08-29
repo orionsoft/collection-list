@@ -1,6 +1,6 @@
 Package.describe({
   name: 'orionsoft:collection-list',
-  version: '0.0.1',
+  version: '0.0.2',
   summary: 'List documents in your collections with React and Material UI',
   git: 'https://github.com/orionsoft/collection-list',
   documentation: 'README.md'

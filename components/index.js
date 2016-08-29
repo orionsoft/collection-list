@@ -5,7 +5,6 @@ import _ from 'underscore'
 import NoItems from './no-items'
 import Data from './data'
 import Pagination from './pagination'
-import {Meteor} from 'meteor/meteor'
 import CollectionPubGetInfo from './collection'
 
 const propTypes = {
@@ -65,11 +64,6 @@ const propTypes = {
   autoHidePagination: React.PropTypes.bool,
 
   /**
-   * Server connection
-   */
-  connection: React.PropTypes.any,
-
-  /**
    * The collection that has the publication info
    */
   infoCollection: React.PropTypes.any
@@ -81,7 +75,6 @@ const defaultProps = {
   parentClassName: '',
   params: {},
   autoHidePagination: false,
-  connection: Meteor,
   infoCollection: CollectionPubGetInfo
 }
 
@@ -119,6 +112,10 @@ export default class CollectionPub extends SaveStateComponent {
     return !_.isEqual(this.props, nextProps) || !_.isEqual(this.state, nextState)
   }
 
+  getConnection () {
+    return this.props.collection._connection
+  }
+
   renderPagination () {
     if (this.props.autoHidePagination) {
       if (this.state.total <= this.state.limit) return
@@ -137,7 +134,7 @@ export default class CollectionPub extends SaveStateComponent {
     return (
       <div>
         <Data
-        connection={this.props.connection}
+        connection={this.getConnection()}
         infoCollection={this.props.infoCollection}
         publication={`collectionList.${this.props.name}.docs`}
         infoPublication={`collectionList.${this.props.name}.info`}

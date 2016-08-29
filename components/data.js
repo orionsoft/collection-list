@@ -1,5 +1,5 @@
 import React from 'react'
-import { createContainer } from 'meteor/react-meteor-data'
+import {createContainer} from 'meteor/react-meteor-data'
 
 const propTypes = {
   params: React.PropTypes.object.isRequired,
